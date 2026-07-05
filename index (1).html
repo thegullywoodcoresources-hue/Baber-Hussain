@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sir Babar Hussain — O/A Level Physics Expert | Director & HOD</title>
+  <meta name="description" content="Master O and A Level Physics with Sir Babar Hussain — Director & HOD of Physics. Teaching across Whales College, Crownbridge & SKH Solutions. Making students a brand." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            space: { 950: '#04060f', 900: '#080b1e', 850: '#0b0f2b', 800: '#0f1740', 700: '#16205c' },
+            royal: { 600: '#7c3aed', 500: '#8b5cf6', 400: '#a78bfa' },
+            neon:  { 500: '#38bdf8', 400: '#5cc8ff', 300: '#7dd3fc', cyan: '#22d3ee' },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Three.js (vanilla, global build) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root { color-scheme: dark; }
+    body { background-color: #04060f; }
+
+    /* Deep-space gradient backdrop for the whole page */
+    .page-bg {
+      background:
+        radial-gradient(1200px 700px at 78% 8%, rgba(124,58,237,0.28), transparent 60%),
+        radial-gradient(1000px 600px at 12% 20%, rgba(56,189,248,0.16), transparent 55%),
+        radial-gradient(900px 900px at 50% 120%, rgba(139,92,246,0.14), transparent 60%),
+        linear-gradient(180deg, #04060f 0%, #080b1e 45%, #0b0f2b 100%);
+    }
+
+    section[id] { scroll-margin-top: 5.5rem; }
+
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(100deg, #7dd3fc 0%, #a78bfa 55%, #8b5cf6 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* Glow utilities */
+    .glow-ring { box-shadow: 0 0 0 1px rgba(124,58,237,0.35), 0 0 40px -8px rgba(56,189,248,0.55), 0 0 80px -20px rgba(124,58,237,0.55); }
+    .card-border { border: 1px solid rgba(139,153,255,0.14); }
+    .card-hover { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+    .card-hover:hover { transform: translateY(-6px); border-color: rgba(56,189,248,0.45); box-shadow: 0 20px 50px -20px rgba(56,189,248,0.35); }
+
+    .btn-wa { background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 12px 30px -10px rgba(34,197,94,0.6); }
+    .btn-wa:hover { filter: brightness(1.07); transform: translateY(-2px); }
+    .btn-ig { background: linear-gradient(135deg, #7c3aed 0%, #d6299b 55%, #f97316 120%); }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* Floating whatsapp pulse */
+    .wa-pulse::before {
+      content: ""; position: absolute; inset: 0; border-radius: 9999px;
+      background: #22c55e; opacity: .55; animation: waPulse 2.2s ease-out infinite; z-index: -1;
+    }
+    @keyframes waPulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(2.1); opacity: 0; } }
+
+    .float-slow { animation: floaty 7s ease-in-out infinite; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* Faint physics formula layer */
+    .formula { font-family: "Space Mono", monospace; color: #9fb3ff; opacity: .10; user-select: none; white-space: nowrap; }
+
+    /* Nav underline */
+    .nav-link { position: relative; }
+    .nav-link::after { content:""; position:absolute; left:0; bottom:-4px; height:1.5px; width:0; background: linear-gradient(90deg,#38bdf8,#a78bfa); transition: width .25s ease; }
+    .nav-link:hover::after, .nav-link:focus-visible::after { width:100%; }
+
+    :focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; border-radius: 4px; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #04060f; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(#7c3aed,#38bdf8); border-radius: 999px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .float-slow, .wa-pulse::before { animation: none; }
+    }
+  </style>
+</head>
+
+<body class="page-bg font-body text-slate-200 antialiased selection:bg-royal-500/40 selection:text-white">
+
+  <!-- ============ HEADER ============ -->
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+    <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 group">
+        <span class="relative grid place-items-center h-10 w-10 rounded-xl bg-space-800/80 card-border">
+          <!-- atom glyph -->
+          <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-500" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/>
+            <ellipse cx="12" cy="12" rx="10" ry="4.4"/>
+            <ellipse cx="12" cy="12" rx="10" ry="4.4" transform="rotate(60 12 12)"/>
+            <ellipse cx="12" cy="12" rx="10" ry="4.4" transform="rotate(120 12 12)"/>
+          </svg>
+        </span>
+        <span class="leading-tight">
+          <span class="block font-display font-700 text-white text-lg tracking-tight">Babar Hussain</span>
+          <span class="block font-mono text-[10px] uppercase tracking-[0.25em] text-neon-300/80">Physics · O/A Level</span>
+        </span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 font-mono text-[13px] uppercase tracking-widest text-slate-300">
+        <a href="#home" class="nav-link hover:text-white">Home</a>
+        <a href="#about" class="nav-link hover:text-white">About</a>
+        <a href="#institutes" class="nav-link hover:text-white">Institutes</a>
+        <a href="#admissions" class="nav-link hover:text-white">Admissions</a>
+        <a href="#contact" class="nav-link hover:text-white">Contact</a>
+        <a href="https://www.instagram.com/sirbabarhussain?igsh=MXJmb3hiNzEwbGJveg==" target="_blank" rel="noopener"
+           aria-label="Instagram" class="grid place-items-center h-9 w-9 rounded-lg card-border bg-space-800/60 hover:border-neon-500/60 hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.4.2-1.72.32-.43.17-.74.37-1.06.7-.32.32-.52.63-.7 1.06-.12.32-.28.82-.32 1.72C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.75c.04.9.2 1.4.32 1.72.17.43.37.74.7 1.06.32.32.63.52 1.06.7.32.12.82.28 1.72.32 1.25.06 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.4-.2 1.72-.32.43-.17.74-.37 1.06-.7.32-.32.52-.63.7-1.06.12-.32.28-.82.32-1.72.06-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.2-1.4-.32-1.72a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.32-.12-.82-.28-1.72-.32C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.15-.66a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0Z"/></svg>
+        </a>
+      </div>
+
+      <button id="menu-btn" aria-label="Open menu" class="md:hidden grid place-items-center h-10 w-10 rounded-lg card-border bg-space-800/60 text-white">
+        <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-white/5 bg-space-950/95 backdrop-blur-xl">
+      <div class="px-6 py-5 flex flex-col gap-4 font-mono text-sm uppercase tracking-widest text-slate-300">
+        <a href="#home" class="mobile-link hover:text-white">Home</a>
+        <a href="#about" class="mobile-link hover:text-white">About</a>
+        <a href="#institutes" class="mobile-link hover:text-white">Institutes</a>
+        <a href="#admissions" class="mobile-link hover:text-white">Admissions</a>
+        <a href="#contact" class="mobile-link hover:text-white">Contact</a>
+        <a href="https://www.instagram.com/sirbabarhussain?igsh=MXJmb3hiNzEwbGJveg==" target="_blank" rel="noopener" class="text-neon-300 hover:text-white">Instagram →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+    <!-- 3D canvas -->
+    <canvas id="bg-canvas" class="absolute inset-0 -z-10 h-full w-full"></canvas>
+
+    <!-- contrast + vignette overlays -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-space-950 via-space-950/70 to-transparent"></div>
+    <div class="absolute inset-0 -z-10" style="background: radial-gradient(80% 60% at 50% 40%, transparent 40%, rgba(4,6,15,0.75) 100%);"></div>
+
+    <!-- faint physics formulas -->
+    <div class="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+      <span class="formula absolute top-[16%] left-[6%] text-2xl">F = ma</span>
+      <span class="formula absolute top-[70%] left-[10%] text-xl">v = u + at</span>
+      <span class="formula absolute top-[30%] right-[12%] text-2xl">E = mc²</span>
+      <span class="formula absolute bottom-[14%] right-[18%] text-lg">λ = h / p</span>
+      <span class="formula absolute top-[52%] left-[40%] text-base">Δx·Δp ≥ ℏ/2</span>
+      <span class="formula absolute top-[10%] right-[38%] text-base">τ = r × F</span>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto w-full px-5 sm:px-8 pt-28 pb-20">
+      <div class="max-w-2xl">
+        <p class="reveal font-mono text-[11px] sm:text-xs uppercase tracking-[0.4em] text-neon-300 mb-6">CAIE · O &nbsp;/&nbsp; A Level Physics</p>
+
+        <h1 class="reveal font-display font-700 text-white tracking-tight leading-[1.02] text-4xl sm:text-6xl lg:text-7xl">
+          Master O/A Level Physics with
+          <span class="text-gradient">Sir Babar Hussain</span>
+        </h1>
+
+        <p class="reveal mt-7 text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-xl">
+          Guiding students to success — passionate about making physics simple.
+          Director &amp; HOD of Physics, teaching across
+          <span class="text-white font-500">Whales College</span>,
+          <span class="text-white font-500">Crownbridge</span> and
+          <span class="text-white font-500">SKH Solutions</span>.
+        </p>
+
+        <div class="reveal mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a href="https://wa.me/923332106955?text=Hi%20Sir%20Babar%2C%20I%20want%20to%20inquire%20about%20your%20O/A%20Level%20Physics%20classes."
+             target="_blank" rel="noopener"
+             class="btn-wa inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 font-600 text-white transition">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.77-1.67-2.07-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35ZM12.05 21.5h-.02a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.42 9.42 0 0 1 14.64-11.6 9.35 9.35 0 0 1 2.76 6.68 9.44 9.44 0 0 1-9.4 9.34ZM20.5 3.48A11.2 11.2 0 0 0 2.9 17.06L1.5 22.5l5.56-1.46a11.2 11.2 0 0 0 5.36 1.37h.01a11.22 11.22 0 0 0 8.06-19Z"/></svg>
+            Enroll Now via WhatsApp
+          </a>
+          <a href="https://www.instagram.com/sirbabarhussain?igsh=MXJmb3hiNzEwbGJveg==" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 font-600 text-white card-border bg-white/5 hover:bg-white/10 transition">
+            Follow on Instagram
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <span><span class="text-neon-300">18+</span> Specializations</span>
+          <span class="hidden sm:inline text-slate-600">/</span>
+          <span><span class="text-neon-300">Hundreds</span> of Alumni</span>
+          <span class="hidden sm:inline text-slate-600">/</span>
+          <span><span class="text-neon-300">3</span> Elite Institutes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- scroll cue -->
+    <a href="#about" aria-label="Scroll to about" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-500 hover:text-neon-300 transition float-slow">
+      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ============ ABOUT & PHILOSOPHY ============ -->
+  <section id="about" class="relative py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[0.85fr_1.15fr] gap-14 lg:gap-20 items-center">
+
+      <!-- profile -->
+      <div class="reveal relative mx-auto lg:mx-0">
+        <div class="absolute -inset-6 rounded-full bg-gradient-to-tr from-royal-600/30 via-neon-500/20 to-transparent blur-2xl"></div>
+        <div class="relative h-64 w-64 sm:h-80 sm:w-80 rounded-full p-[3px] bg-gradient-to-tr from-neon-500 via-royal-500 to-royal-600 glow-ring">
+          <img src="profile.jpg" alt="Portrait of Sir Babar Hussain"
+               class="h-full w-full rounded-full object-cover object-top bg-space-800" loading="lazy" />
+        </div>
+        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full card-border bg-space-850/90 backdrop-blur px-5 py-2 font-mono text-[11px] uppercase tracking-widest text-neon-300">
+          Director &amp; HOD · Physics
+        </div>
+      </div>
+
+      <!-- copy -->
+      <div>
+        <p class="reveal font-mono text-xs uppercase tracking-[0.4em] text-neon-300 mb-5">The Philosophy</p>
+        <h2 class="reveal font-display font-700 text-white text-3xl sm:text-5xl tracking-tight leading-tight">
+          Making Students <span class="text-gradient">a Brand</span>
+        </h2>
+        <div class="reveal mt-6 space-y-4 text-slate-300/90 leading-relaxed max-w-2xl">
+          <p>
+            Physics isn't about memorizing formulas — it's about understanding why the universe behaves the way it does.
+            Every session starts from first principles, so the intuition clicks before the equations do.
+          </p>
+          <p>
+            The result is students who don't just pass — they think like physicists, walk into the exam hall with confidence,
+            and carry a reputation that opens doors. That's what it means to make a student a brand.
+          </p>
+        </div>
+
+        <!-- pillars -->
+        <div class="reveal mt-10 grid sm:grid-cols-3 gap-4">
+          <div class="rounded-2xl card-border bg-space-850/60 p-5 card-hover">
+            <div class="grid place-items-center h-10 w-10 rounded-xl bg-neon-500/10 text-neon-300 mb-4">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18" opacity=".4"/><circle cx="12" cy="12" r="9"/></svg>
+            </div>
+            <h3 class="font-display font-600 text-white">Conceptual Clarity</h3>
+            <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Every topic built from first principles — the “why” before the “how”.</p>
+          </div>
+          <div class="rounded-2xl card-border bg-space-850/60 p-5 card-hover">
+            <div class="grid place-items-center h-10 w-10 rounded-xl bg-royal-500/10 text-royal-400 mb-4">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h9a2 2 0 0 1 2 2v14l-4-2-4 2V6a2 2 0 0 0-2-2H8z"/><path d="M8 4H6a2 2 0 0 0-2 2v12"/></svg>
+            </div>
+            <h3 class="font-display font-600 text-white">Past-Paper Mastery</h3>
+            <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Structured drilling of CAIE papers, mark schemes and examiner logic.</p>
+          </div>
+          <div class="rounded-2xl card-border bg-space-850/60 p-5 card-hover">
+            <div class="grid place-items-center h-10 w-10 rounded-xl bg-neon-500/10 text-neon-300 mb-4">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18c4-9 12-9 16 0"/><circle cx="12" cy="7" r="2.4"/></svg>
+            </div>
+            <h3 class="font-display font-600 text-white">Physics Made Simple</h3>
+            <p class="mt-1.5 text-sm text-slate-400 leading-relaxed">Complex mechanics, waves and fields broken into intuitive steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTITUTES ============ -->
+  <section id="institutes" class="relative py-24 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl">
+        <p class="reveal font-mono text-xs uppercase tracking-[0.4em] text-neon-300 mb-5">Institutional Network</p>
+        <h2 class="reveal font-display font-700 text-white text-3xl sm:text-5xl tracking-tight leading-tight">
+          Teaching where the <span class="text-gradient">best learn</span>
+        </h2>
+        <p class="reveal mt-5 text-slate-400 leading-relaxed">Trusted with Physics leadership across three of the region's leading O &amp; A Level institutes.</p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-3 gap-6">
+        <!-- Whales -->
+        <article class="reveal group relative rounded-3xl card-border bg-space-850/60 p-7 card-hover overflow-hidden">
+          <div class="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-neon-500/10 blur-2xl group-hover:bg-neon-500/20 transition"></div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-neon-300">Session 2025-26</span>
+          <h3 class="mt-3 font-display font-700 text-2xl text-white">Whales College</h3>
+          <p class="mt-1 text-royal-400 font-500">A Level Physics</p>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed">Leading A Level Physics sessions — registrations now live for the new academic year.</p>
+        </article>
+        <!-- Crownbridge -->
+        <article class="reveal group relative rounded-3xl card-border bg-space-850/60 p-7 card-hover overflow-hidden">
+          <div class="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-royal-500/15 blur-2xl group-hover:bg-royal-500/25 transition"></div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-neon-300">London International</span>
+          <h3 class="mt-3 font-display font-700 text-2xl text-white">Crownbridge</h3>
+          <p class="mt-1 text-royal-400 font-500">Director &amp; HOD, Physics</p>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed">Heading the Physics department at Crownbridge London International College.</p>
+        </article>
+        <!-- SKH -->
+        <article class="reveal group relative rounded-3xl card-border bg-space-850/60 p-7 card-hover overflow-hidden">
+          <div class="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-neon-500/10 blur-2xl group-hover:bg-neon-500/20 transition"></div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-neon-300">O &amp; A Levels</span>
+          <h3 class="mt-3 font-display font-700 text-2xl text-white">SKH Solutions</h3>
+          <p class="mt-1 text-royal-400 font-500">O / A Level Physics</p>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed">Physics faculty at SKH Solutions — a one-stop institute for O &amp; A Level success.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ADMISSIONS (poster feature) ============ -->
+  <section id="admissions" class="relative py-24 sm:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="rounded-[2rem] card-border bg-space-850/50 overflow-hidden grid lg:grid-cols-2">
+        <!-- poster -->
+        <div class="reveal relative p-6 sm:p-8 flex items-center">
+          <div class="absolute inset-0 bg-gradient-to-tr from-royal-600/15 to-neon-500/10"></div>
+          <div class="relative w-full rounded-2xl overflow-hidden glow-ring">
+            <img src="poster.jpg" alt="Join Whales College — Study A Level Physics with Babar Hussain, Session 2025-26"
+                 class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+        <!-- copy -->
+        <div class="reveal p-8 sm:p-12 flex flex-col justify-center">
+          <p class="font-mono text-xs uppercase tracking-[0.4em] text-neon-300 mb-5">Admissions Open</p>
+          <h2 class="font-display font-700 text-white text-3xl sm:text-4xl tracking-tight leading-tight">
+            Session 2025-26 — <span class="text-gradient">seats filling fast</span>
+          </h2>
+          <p class="mt-5 text-slate-300/90 leading-relaxed max-w-md">
+            Registrations are now live for A Level Physics with Sir Babar Hussain. Secure your seat and start
+            building genuine conceptual mastery from day one — the way toppers do.
+          </p>
+          <ul class="mt-6 space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-neon-400"></span> Live, structured O &amp; A Level Physics</li>
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-royal-400"></span> Past-paper &amp; mark-scheme focus</li>
+            <li class="flex items-center gap-3"><span class="h-1.5 w-1.5 rounded-full bg-neon-400"></span> Personal mentorship &amp; doubt-solving</li>
+          </ul>
+          <div class="mt-8">
+            <a href="https://wa.me/923332106955?text=Hi%20Sir%20Babar%2C%20I%20want%20to%20inquire%20about%20your%20O/A%20Level%20Physics%20classes."
+               target="_blank" rel="noopener"
+               class="btn-wa inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 font-600 text-white transition">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.77-1.67-2.07-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+              Enroll via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOCIALS ============ -->
+  <section id="socials" class="relative py-20">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
+      <div class="reveal relative rounded-[2rem] overflow-hidden card-border p-10 sm:p-14 text-center"
+           style="background: radial-gradient(120% 120% at 50% 0%, rgba(124,58,237,0.25), rgba(11,15,43,0.6));">
+        <p class="font-mono text-xs uppercase tracking-[0.4em] text-neon-300 mb-5">Stay in the loop</p>
+        <h2 class="font-display font-700 text-white text-3xl sm:text-4xl tracking-tight">Follow the journey on Instagram</h2>
+        <p class="mt-5 max-w-xl mx-auto text-slate-300/90 leading-relaxed">
+          Daily physics tips, workshop announcements, and reels that make tough concepts stick.
+          Join the community at <span class="text-white font-500">@sirbabarhussain</span>.
+        </p>
+        <a href="https://www.instagram.com/sirbabarhussain?igsh=MXJmb3hiNzEwbGJveg==" target="_blank" rel="noopener"
+           class="btn-ig mt-8 inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 font-600 text-white hover:brightness-110 transition">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.4.37 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.05 1.2-.25 1.8-.42 2.2a3.7 3.7 0 0 1-.9 1.38 3.7 3.7 0 0 1-1.38.9c-.4.17-1 .37-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-1.8-.25-2.2-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.4-.37-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.2.25-1.8.42-2.2.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.4-.17 1-.37 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 4.86A4.94 4.94 0 1 0 12 16.94 4.94 4.94 0 0 0 12 7.06Zm0 1.8a3.14 3.14 0 1 1 0 6.28 3.14 3.14 0 0 1 0-6.28Zm5.15-.66a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0Z"/></svg>
+          @sirbabarhussain
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / FOOTER ============ -->
+  <footer id="contact" class="relative pt-20 pb-10 border-t border-white/5 mt-6">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="reveal">
+          <h2 class="font-display font-700 text-white text-3xl sm:text-4xl tracking-tight leading-tight">
+            Ready to master <span class="text-gradient">physics?</span>
+          </h2>
+          <p class="mt-4 text-slate-400 max-w-md leading-relaxed">
+            Reach out on WhatsApp for class timings, fees and availability — or drop a message on Instagram.
+          </p>
+          <div class="mt-7 flex flex-col sm:flex-row gap-4">
+            <a href="https://wa.me/923332106955?text=Hi%20Sir%20Babar%2C%20I%20want%20to%20inquire%20about%20your%20O/A%20Level%20Physics%20classes."
+               target="_blank" rel="noopener"
+               class="btn-wa inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-3.5 font-600 text-white transition">
+              WhatsApp · 0333-2106955
+            </a>
+            <a href="https://www.instagram.com/sirbabarhussain?igsh=MXJmb3hiNzEwbGJveg==" target="_blank" rel="noopener"
+               class="inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-3.5 font-600 text-white card-border bg-white/5 hover:bg-white/10 transition">
+              Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal lg:justify-self-end">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center h-11 w-11 rounded-xl bg-space-800/80 card-border">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-neon-500" fill="none" stroke="currentColor" stroke-width="1.4">
+                <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/>
+                <ellipse cx="12" cy="12" rx="10" ry="4.4"/>
+                <ellipse cx="12" cy="12" rx="10" ry="4.4" transform="rotate(60 12 12)"/>
+                <ellipse cx="12" cy="12" rx="10" ry="4.4" transform="rotate(120 12 12)"/>
+              </svg>
+            </span>
+            <div>
+              <p class="font-display font-700 text-white text-lg">Babar Hussain</p>
+              <p class="font-mono text-[11px] uppercase tracking-widest text-neon-300/80">O/A Level Physics · Director &amp; HOD</p>
+            </div>
+          </div>
+          <p class="mt-5 text-slate-400 text-sm max-w-xs leading-relaxed">
+            “Guiding students to success — passionate about making physics simple.”
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        <p>© <span id="year"></span> Babar Hussain · Making Students a Brand</p>
+        <nav class="flex items-center gap-6 uppercase tracking-widest">
+          <a href="#about" class="hover:text-white">About</a>
+          <a href="#institutes" class="hover:text-white">Institutes</a>
+          <a href="#admissions" class="hover:text-white">Admissions</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ STICKY WHATSAPP ============ -->
+  <a href="https://wa.me/923332106955?text=Hi%20Sir%20Babar%2C%20I%20want%20to%20inquire%20about%20your%20O/A%20Level%20Physics%20classes."
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
+     class="wa-pulse fixed bottom-6 right-6 z-50 grid place-items-center h-14 w-14 rounded-full text-white shadow-2xl"
+     style="background:#25D366;">
+    <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.77-1.67-2.07-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37s-1.05 1.02-1.05 2.5 1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35ZM12.05 21.5h-.02a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.42 9.42 0 0 1 14.64-11.6 9.35 9.35 0 0 1 2.76 6.68 9.44 9.44 0 0 1-9.4 9.34Z"/></svg>
+  </a>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // Header background on scroll
+    const header = document.getElementById('site-header');
+    const onScroll = () => {
+      if (window.scrollY > 24) header.classList.add('bg-space-950/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+      else header.classList.remove('bg-space-950/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ==================== THREE.JS: ATOMIC CONSTELLATION ==================== */
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canvas = document.getElementById('bg-canvas');
+      const hero = document.getElementById('home');
+      if (!window.THREE || !canvas) return;
+
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 100);
+      camera.position.set(0, 0, 15);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // World group (for parallax)
+      const world = new THREE.Group();
+      scene.add(world);
+
+      // ---- Starfield ----
+      const starCount = isMobile ? 380 : 850;
+      const starPos = new Float32Array(starCount * 3);
+      for (let i = 0; i < starCount; i++) {
+        const r = 8 + Math.random() * 22;
+        const t = Math.random() * Math.PI * 2;
+        const p = Math.acos(2 * Math.random() - 1);
+        starPos[i * 3]     = r * Math.sin(p) * Math.cos(t);
+        starPos[i * 3 + 1] = r * Math.sin(p) * Math.sin(t) * 0.7;
+        starPos[i * 3 + 2] = r * Math.cos(p);
+      }
+      const starGeo = new THREE.BufferGeometry();
+      starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({
+        color: 0x9fb3ff, size: 0.07, transparent: true, opacity: 0.85, sizeAttenuation: true, depthWrite: false
+      }));
+      world.add(stars);
+
+      // ---- Atom ----
+      const atom = new THREE.Group();
+      atom.position.x = isMobile ? 0 : 3.4;
+      atom.position.y = isMobile ? 1.5 : 0;
+      world.add(atom);
+
+      const nucleus = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(1.05, 0),
+        new THREE.MeshBasicMaterial({ color: 0x7c3aed })
+      );
+      const nucleusWire = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(1.18, 1),
+        new THREE.MeshBasicMaterial({ color: 0x8fa6ff, wireframe: true, transparent: true, opacity: 0.55 })
+      );
+      atom.add(nucleus, nucleusWire);
+
+      const orbits = [];
+      function addOrbit(R, tilt, color, speed, phase) {
+        const g = new THREE.Group();
+        g.rotation.set(tilt[0], tilt[1], tilt[2]);
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(R, 0.016, 8, 120),
+          new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.32 })
+        );
+        const e = new THREE.Mesh(
+          new THREE.SphereGeometry(0.13, 14, 14),
+          new THREE.MeshBasicMaterial({ color })
+        );
+        g.add(ring, e);
+        atom.add(g);
+        orbits.push({ e, R, speed, phase });
+      }
+      addOrbit(2.0, [0, 0, 0],                    0x38bdf8, 1.15, 0.0);
+      addOrbit(2.0, [Math.PI / 3, 0, Math.PI / 4], 0xa78bfa, 1.45, 2.1);
+      addOrbit(2.0, [-Math.PI / 3, 0, -Math.PI / 4],0x22d3ee, 0.95, 4.2);
+
+      // ---- Constellation nodes + lines ----
+      const nodeCount = isMobile ? 10 : 16;
+      const nodes = [];
+      for (let i = 0; i < nodeCount; i++) {
+        nodes.push(new THREE.Vector3(
+          (Math.random() - 0.5) * 16,
+          (Math.random() - 0.5) * 9,
+          (Math.random() - 0.5) * 8
+        ));
+      }
+      // node dots
+      const nodePos = new Float32Array(nodeCount * 3);
+      nodes.forEach((n, i) => { nodePos[i*3]=n.x; nodePos[i*3+1]=n.y; nodePos[i*3+2]=n.z; });
+      const nodeGeo = new THREE.BufferGeometry();
+      nodeGeo.setAttribute('position', new THREE.BufferAttribute(nodePos, 3));
+      world.add(new THREE.Points(nodeGeo, new THREE.PointsMaterial({ color: 0x5cc8ff, size: 0.18, transparent: true, opacity: 0.9, depthWrite: false })));
+      // lines between nearby nodes
+      const linePts = [];
+      for (let i = 0; i < nodeCount; i++) {
+        for (let j = i + 1; j < nodeCount; j++) {
+          if (nodes[i].distanceTo(nodes[j]) < 6.5) { linePts.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z); }
+        }
+      }
+      const lineGeo = new THREE.BufferGeometry();
+      lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePts), 3));
+      world.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.18 })));
+
+      // ---- Floating wireframe shapes ----
+      const shapes = [];
+      const shapeDefs = [
+        { g: new THREE.OctahedronGeometry(0.8), c: 0x7c3aed, p: [-6, 3, -3] },
+        { g: new THREE.IcosahedronGeometry(0.7), c: 0x38bdf8, p: [6.5, -3.2, -4] },
+        { g: new THREE.TorusGeometry(0.6, 0.14, 8, 40), c: 0xa78bfa, p: [-5.5, -3.5, -2] },
+      ];
+      shapeDefs.forEach(d => {
+        const m = new THREE.Mesh(d.g, new THREE.MeshBasicMaterial({ color: d.c, wireframe: true, transparent: true, opacity: 0.45 }));
+        m.position.set(d.p[0], d.p[1], d.p[2]);
+        m.userData.spin = (Math.random() * 0.4 + 0.2);
+        world.add(m); shapes.push(m);
+      });
+
+      // ---- Sizing ----
+      function resize() {
+        const w = hero.clientWidth, h = hero.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // ---- Mouse parallax ----
+      let mx = 0, my = 0;
+      window.addEventListener('pointermove', (e) => {
+        mx = (e.clientX / window.innerWidth) * 2 - 1;
+        my = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      const clock = new THREE.Clock();
+      let visible = true, rafId = null;
+
+      function render() {
+        const t = clock.getElapsedTime();
+        atom.rotation.y = t * 0.14;
+        orbits.forEach(o => o.e.position.set(Math.cos(t * o.speed + o.phase) * o.R, Math.sin(t * o.speed + o.phase) * o.R, 0));
+        nucleusWire.rotation.y = -t * 0.25; nucleusWire.rotation.x = t * 0.18;
+        stars.rotation.y = t * 0.015;
+        shapes.forEach(s => { s.rotation.x += 0.003 * s.userData.spin; s.rotation.y += 0.004 * s.userData.spin; });
+
+        // parallax easing
+        const tx = mx * 0.35, ty = -my * 0.22;
+        world.rotation.y += (tx - world.rotation.y) * 0.045;
+        world.rotation.x += (ty - world.rotation.x) * 0.045;
+
+        renderer.render(scene, camera);
+      }
+
+      function loop() { render(); rafId = requestAnimationFrame(loop); }
+
+      if (reduceMotion) {
+        render(); // one static frame, no animation
+      } else {
+        loop();
+        // Pause when hero is off-screen or tab hidden (battery/perf)
+        const io = new IntersectionObserver(([entry]) => {
+          visible = entry.isIntersecting;
+          if (visible && !rafId) loop();
+          else if (!visible && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        }, { threshold: 0.02 });
+        io.observe(hero);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+          else if (!document.hidden && visible && !rafId) loop();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
